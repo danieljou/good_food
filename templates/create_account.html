@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container my-3">
+        <div class="d-flex justify-content-center">
+                <h2 class="text-warning"> GOOD FOOD </h2>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="card">
+                <div class="card-header bg-warning">
+                    <div class="d-flex justify-content-between">
+                            <div class="">
+                                Créer un compte
+                            </div>
+                            <a href="/" class="btn btn-light"><i class="fa fa-arrow-circle-left"></i>  Retour</a> 
+                    </div>
+                </div>
+                <div class="card-body">
+                        <form action="" method="post" novalidate>
+                            {% csrf_token %}
+                            {{form | crispy}}
+                            <input type="submit" class="btn btn-success" value="Creer">
+                        </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+{% endblock content %}
+    

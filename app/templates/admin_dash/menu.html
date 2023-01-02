@@ -1,0 +1,58 @@
+{% extends 'admin_dash/base.html' %} 
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+    <h2>Gestion des menu </h2>
+    <div class="d-flex justify-content-end">
+        <a  href="{% url 'create_menu' %}" class="btn btn-warning">Créer un menu</a>
+    </div>
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="bg-light">
+            <th> # </th>
+            <th>Nom du menu</th>
+            <th>Liste des plats </th>
+            <th>Option</th>
+        </thead>
+        <tbody>
+            {% for item in menu %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>
+                        {{item.Nom_du_menu}}
+                    </td>
+                    <td>
+                        <ul>
+                            {% for plat in item.return_repas %}
+                                <li> {{plat}} </li>
+                            {% endfor %}
+                        </ul>   
+                    </td>
+                    <td>
+                        <a href="{% url 'update_menu' item.id %}" class="btn btn-warning">
+                            <i class="far fa-edit"></i>
+                        </a>
+                        <a href="{% url 'delete_menu' item.id %}" class="btn btn-danger">
+                            <i class="far fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center"> Aucun menu pour le moment</td>
+            </tr>
+           {% endfor %}
+        </tbody>
+        
+       
+            
+    </table>
+</div>
+
+
+
+{% endblock content %}
