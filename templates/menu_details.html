@@ -1,0 +1,25 @@
+{% extends 'base_home.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row card my-3 p-2">
+            <strong> {{menu}} </strong>
+            <div class=""> Prix total du menu  : <strong class="text-warning text-bold"> {{menu.get_total_price}} XFA </strong></div>
+            <a href="" class="btn btn-dark"> <i class="fa fa-cart-arrow-down"></i> Commander le menu entier</a>
+        </div>
+        <div class="row">
+            {% for item in menu.return_repas %}
+                <div class=" card card-body mt-2 ">
+                    <div class="text-warning"> {{item.Nom}} </div>
+                    <div class=""> <img src="{{item.images.url}}" alt="" width="200px"> 
+                    <a href="{% url 'commander_repas' item.id %}" class="btn btn-warning">Commander uniquement ce plat pour <strong>{{item.Prix}} XFA</strong> </a>
+                    </div>
+                    <div class="col"> {{item.description}} </div>
+                </div>
+            {% endfor %}
+        </div>
+            
+    </div>
+{% endblock content %}
+    

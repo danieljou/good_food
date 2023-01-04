@@ -5,7 +5,7 @@
 
 
 
-<div class="container">
+<div class="container-fluid">
     <h2>Gestion des repas</h2>
     <div class="d-flex justify-content-center">
         <a href="{% url 'create_repas' %}" class="btn btn-warning"> <i class="fa fa-plus"></i> Ajouter un repas</a>
@@ -14,9 +14,9 @@
     <div class="row">
         {% for food in foods %}
        
-        <div class="p-2hy  col-lg-4 col-sm-12 col-xs-12">
+        <div class="p-2 col-lg-4 col-sm-12 col-xs-12">
             <div class="card">
-                <img src="{{food.images.url}}" class="card-img-top" alt="...">
+                <img src="{{food.images.url}}" class="image_map" alt="...">
                 <div class="card-body">
                   <h5 class="card-title"> {{food.Nom}} </h5>
                   <p class="card-text"> {{ food.description | truncatechars:100 }}</p>

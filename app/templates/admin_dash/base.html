@@ -66,7 +66,18 @@
       type="text/css"
       href="{% static 'assets/assets/vendor/datatables/css/fixedHeader.bootstrap4.css' %}"
     />
+    <link
+    href="{% static 'bootstrap/css/mdb.min.css' %}"
+    rel="stylesheet"
+  />
     <title>GOOD FOOD</title>
+    <style>
+      .image_map{
+          width: 100%;
+          height: 260px;
+          object-fit: cover;
+      }
+  </style>
     <style>
       .sidebar-warning{
         background-color: rgba(255, 166, 0, 0.929);
@@ -97,7 +108,7 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span class="fa fa-arrow-circle-down"></span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -145,15 +156,18 @@
           <nav class="navbar navbar-expand-lg navbar-light">
             <a class="d-xl-none d-lg-none" href="">Dashboard</a>
             <button
-              class="navbar-toggler"
+              class="navbar-toggler mt-5"
               type="button"
               data-toggle="collapse"
               data-target="#navbarNav"
               aria-controls="navbarNav"
               aria-expanded="false"
               aria-label="Toggle navigation"
+              style="z-index: 1000;"
             >
-              <span class="navbar-toggler-icon"></span>
+            <br>
+            <br>
+              <span class="navbar-toggler-icon fa fa-bars"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav flex-column">
@@ -186,7 +200,7 @@
                     <a class="nav-link" href="{% url 'menu' %}"> <i class="fas fa-table"></i> Menu</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href=""> <i class="fas fa-cart-arrow-down"></i> Commandes</a>
+                    <a class="nav-link" href="{% url 'command_list' %}"> <i class="fas fa-cart-arrow-down"></i> Commandes</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href=""> <i class="fas fa-address-book"></i> Reservation</a>
@@ -258,5 +272,11 @@
     <script src="{% static 'assets/assets/js/datatable_row_grouw.min.js' %}"></script>
     <script src="{% static 'assets/assets/js/data_table_select.min.js' %}"></script>
     <script src="{% static 'assets/assets/js/fixexed.min.js' %}"></script>
+
+    
+    {% block scripts %}
+      
+    {% endblock scripts %}
+      
   </body>
 </html>

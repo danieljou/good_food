@@ -1,0 +1,48 @@
+{% extends 'base_home.html' %}
+
+
+
+{% block content %}
+<style>
+    .image_map{
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+    }
+</style>
+    <div class="container my-3">
+        <div class="row">
+            {% for item in menu %}
+                <div class="p-2hy  col-lg-4 col-sm-12 col-xs-12">
+                    <div class="card">
+
+                        <div class="card-header">Menu : <strong>{{item.Nom_du_menu }}</strong>  </div>
+                        <img src="{{item.return_first.images.url}}" class="image_map" alt="...">
+                        <div class="card-body">
+                            {{item.Nom_du_menu}}
+                        <h5 class="card-title"> {{food.Nom}} </h5>
+                        <p class="card-text"> {{ food.description | truncatechars:100 }}</p>
+                        <div class="">
+                            <div class="row p-1">
+                                <strong>Liste des repas</strong>
+                                {% for food in item.return_repas %}
+                                    <li>{{food}}</li>
+                                {% endfor %}
+                            </div>
+                            
+                        <br>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'menu_details' item.id %}" class="btn btn-warning"> <i class="fa fa-eye"></i> </a>
+                            <a href="{% url 'commander_menu' item.id %}" class="btn btn-light"> <i class="fa fa-cart-arrow-down"></i> Commander le menu entier</a>
+                        </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+{% endblock content %}
+    

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html lang="en">
+  {% load static %}
+
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>GOOD FOOD</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <link
+      href="{% static 'assets/vendor/animate.css/animate.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}"
+      rel="stylesheet"
+    />
+    <link
+      href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+   
+  <link
+  rel="stylesheet"
+  href="{% static 'assets/assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}"
+/>
+<style>
+  .image_map{
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+  }
+</style>
+  </head>
+
+  <body>
+
+    <section
+      id="topbar"
+      class="d-flex align-items-center fixed-top topbar-transparent"
+    >
+      <div
+        class="container-fluid container-xl d-flex align-items-center justify-content-center justify-content-lg-start"
+      >
+        <i class="bi bi-phone d-flex align-items-center"
+          ><span>+237 690 784 542</span></i
+        >
+        <i class="bi bi-clock ms-4 d-none d-lg-flex align-items-center"
+          ><span> </span></i
+        >
+      </div>
+    </section>
+
+
+    <header
+      id="header"
+      class="fixed-top d-flex align-items-center header-transparent"
+    >
+      <div
+        class="container-fluid container-xl d-flex align-items-center justify-content-between"
+      >
+        <div class="logo me-auto">
+          <h1><a href="index.html">GOOD FOOD</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        </div>
+
+        <nav id="navbar" class="navbar order-last order-lg-0">
+          <ul>
+            <li>
+              <a class="nav-link scrollto active" href="#hero">ACCEUIL</a>
+            </li>
+            <li><a class="nav-link scrollto" href="{% url 'menu_page' %}">Menu</a></li>
+            <li><a class="nav-link scrollto" href="#menu">Menu du jour</a></li>
+            <li><a class="nav-link scrollto" href="#specials">Tables</a></li>
+            <li><a class="nav-link scrollto" href="#events">Contacts</a></li>
+            
+            {% if  request.user.is_authenticated %}
+            <li>
+              <a class="nav-link scrollto" href="{% url 'logout' %}">Se déconnecter </a>
+            </li>
+            {% else %}
+            <li>
+              <li><a class="nav-link scrollto" href="{% url 'create_account' %}">S'inscrire</a></li>
+              <a class="nav-link scrollto" href="{% url 'login' %}">Se connecter </a>
+            </li>
+            {% endif %}
+              
+  
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+
+        <a href="{% url 'redirect_user' %}" class="book-a-table-btn scrollto">Mon compte</a>
+      </div>
+    </header>
+    <!-- End Header -->
+
+      
+<section id="hero">
+    <div class="hero-container">
+      <div
+        id="heroCarousel"
+        data-bs-interval="5000"
+        class="carousel slide carousel-fade"
+        data-bs-ride="carousel"
+      >
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+  
+        <div class="carousel-inner" role="listbox">
+          <!-- Slide 1 -->
+          <div
+            class="carousel-item active"
+            style="
+              background-image: url(../../static/assets/img/slide/slide-1.jpg);
+            "
+          >
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown">
+                  
+                  {% if message %}
+                  <span>{{message}}</span> 
+                  {% else %}
+                  <span>GOOD</span> FOOD
+                  {% endif %}
+                    
+                    
+                </h2>
+                <p class="animate__animated animate__fadeInUp">Nous sommes</p>
+                <div>
+                  <a
+                    href="#menu"
+                    class="btn-menu animate__animated animate__fadeInUp scrollto"
+                    >Nos menu</a
+                  >
+                  <a
+                    href="#book-a-table"
+                    class="btn-book animate__animated animate__fadeInUp scrollto"
+                    >Menu du chef</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Slide 2 -->
+          <div
+            class="carousel-item"
+            style="background-image: url(../../static/assets/img/about.jpg)"
+          >
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown">
+                    {% if message %}
+                    <span>{{message}}</span> 
+                    {% else %}
+                    <span>GOOD</span> FOOD
+                    {% endif %}
+                </h2>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Slide 3 -->
+          <div
+            class="carousel-item"
+            style="
+              background-image: url(../../static/assets/img/slide/slide-3.jpg);
+            "
+          >
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown">
+                    {% if message %}
+                    <span>{{message}}</span> 
+                    {% else %}
+                    <span>GOOD</span> FOOD
+                    {% endif %}
+                </h2>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <a
+          class="carousel-control-prev"
+          href="#heroCarousel"
+          role="button"
+          data-bs-slide="prev"
+        >
+          <span
+            class="carousel-control-prev-icon bi bi-chevron-left"
+            aria-hidden="true"
+          ></span>
+        </a>
+  
+        <a
+          class="carousel-control-next"
+          href="#heroCarousel"
+          role="button"
+          data-bs-slide="next"
+        >
+          <span
+            class="carousel-control-next-icon bi bi-chevron-right"
+            aria-hidden="true"
+          ></span>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+
+    <!-- ======= Hero Section ======= -->
+    
+    {% block content %}
+        
+    {% endblock content %}
+        
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+  </body>
+</html>

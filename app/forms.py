@@ -19,3 +19,25 @@ class MenuForm(forms.ModelForm):
     class Meta:
         model = Menu
         fields = ('__all__')
+    
+class CommandeForm(forms.ModelForm):
+    
+    class Meta:
+        model = Commande
+        exclude = ('plat','date_de_commande','client','etat',)
+        widgets = {
+            'date_de_livraison': forms.TextInput(attrs={
+                'type':'date'
+            })
+        }
+
+class Commande_menuForm(forms.ModelForm):
+    
+    class Meta:
+        model = Commande_menu
+        exclude = ('menu','date_de_commande','client','etat',)
+        widgets = {
+            'date_de_livraison': forms.TextInput(attrs={
+                'type':'date'
+            })
+        }

@@ -1,0 +1,66 @@
+{% extends 'client_dash/base.html' %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-body"> <i class="fa fa-shopping-bag"></i>Vos reservations</div>
+            <table id="studenttable" class="table-responsive table table-bordered table-hover" data-page-length='10'>
+                <thead class="thead-light">
+                  <tr>
+                      <th >Numéro</th>
+                      <th>Image </th>
+                      <th >Client </th>
+                      <th >Repas </th>
+                      <th>Date de création</th>
+                      <th>Date de livraison</th>
+                      <th >état</th>
+                      <th >Quantité</th>
+                      <th >Opérations</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                    {% for command in commande_repas %}
+                    <tr>
+                        <td >{{command.id}}</td>
+                        <td width="20%"> <img src="{{command.plat.images.url}}" alt="" width="50"> </td>
+                        <td > {{command.client.last_name}} {{command.client.first_name}} </td>
+                        <td width="20%"> {{command.plat}} </td>
+                        <td> {{command.date_de_commande}} </td>
+                        <td>{{command.date_de_livraison}}</td>
+                        <td > 
+                            {% if command.etat == 'En cours' %}
+                                <div class="badge badge-warning"> En cours </div>
+                            {% elif command.etat == 'Annulée' %}
+                            <div class="badge badge-danger"> Annulée </div>
+                            {% else %}
+                            <div class="badge badge-success"> Livrée </div>
+                            {% endif %} 
+                        </td>
+                        <td>{{command.quantite}}</td>
+                        <td >Opérations</td>
+                    </tr>
+                    {% endfor %}
+                        
+                </tbody>
+              </table>
+              
+        
+        </div>
+
+    </div>
+
+{% endblock content %}
+
+
+
+{% block scripts %}
+<script>
+    $('#studenttable').DataTable({
+    });
+  </script>
+{% endblock scripts %}
+    
+    

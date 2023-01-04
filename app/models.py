@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 class Table(models.Model):
     nombre_de_place = models.PositiveIntegerField()
 
-    def __str__(self):
-        return  "Table " + self.id
+    def __str__(self): 
+        return  "Table " + str(self.id)
 
 class Reservation(models.Model):
     nombre_de_place = models.PositiveIntegerField()
@@ -16,17 +16,29 @@ class Reservation(models.Model):
     date_de_reservation = models.DateField( auto_now_add=True)
     data_d_utilisation = models.DateField()
 
+    def __str__(self):
+        return "Reservation de "  + self.client
+
 class Commande(models.Model):
 
     client = models.ForeignKey(User, on_delete=models.CASCADE)
     quantite = models.PositiveIntegerField("Quantité")
     plat = models.ForeignKey("Repas", on_delete=models.CASCADE)
     date_de_commande = models.DateField( auto_now_add=True)
+    TYPE_COMMANDE =  [('En cours','En cours'), ('Livrée', 'Livrée'), ('Annulée', 'Annulée')]
+    etat = models.CharField(choices = TYPE_COMMANDE, default = 'En cours' , max_length=50)
     date_de_livraison = models.DateField()
 
+    
 
-    def __str__(self):
-        return "Reservation de "  + self.client
+class Commande_menu(models.Model):
+    client = models.ForeignKey(User, on_delete=models.CASCADE)
+    quantite = models.PositiveIntegerField("Quantité")
+    menu = models.ForeignKey("Menu", on_delete=models.CASCADE)
+    date_de_commande = models.DateField( auto_now_add=True)
+    date_de_livraison = models.DateField()
+    TYPE_COMMANDE =  [('En cours','En cours'), ('Livrée', 'Livrée'), ('Annulée', 'Annulée')]
+    etat = models.CharField(choices = TYPE_COMMANDE, default = 'En cours' , max_length=50)
 
 class Menu(models.Model):
     Nom_du_menu = models.CharField( max_length=50)
@@ -34,6 +46,15 @@ class Menu(models.Model):
     
     def return_repas(self):
         return  self.liste_des_plats.all()
+    def return_first(self):
+        plats = self.liste_des_plats.all()
+        return plats[0]
+    def get_total_price(self):
+        plats = self.liste_des_plats.all()
+        somme = 0
+        for item in plats:
+            somme = somme + item.Prix
+        return somme
 
     def __str__(self):
         return f'{self.Nom_du_menu}'

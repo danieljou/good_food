@@ -168,13 +168,13 @@
 
                   <li class="nav-item"></li>
                   <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{% url 'command_list_user' %}">
                       <i class="fa fa-shopping-cart"></i> Mes commandes</a
                     >
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link" href="{% url 'resrvation_list_user' %}">
                       <i class="fa fa-id-card"></i> Mes reservations</a
                     >
                   </li>
@@ -248,5 +248,11 @@
     <script src="{% static 'assets/assets/js/datatable_row_grouw.min.js' %}"></script>
     <script src="{% static 'assets/assets/js/data_table_select.min.js' %}"></script>
     <script src="{% static 'assets/assets/js/fixexed.min.js' %}"></script>
+
+    
+    {% block scripts %}
+      
+    {% endblock scripts %}
+      
   </body>
 </html>
